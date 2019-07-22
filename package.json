@@ -72,7 +72,8 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test:unit": "node scripts/test.js",
+    "test:unit": "jest --watchAll",
+    "test:unit:coverage": "jest --coverage",
     "test:integration": "node scripts/test.js"
   },
   "eslintConfig": {
@@ -108,8 +109,10 @@
   },
   "jest": {
     "collectCoverageFrom": [
-      "src/**/*.{js,jsx,ts,tsx}",
-      "!src/**/*.d.ts"
+      "src/**/*.{ts,tsx}",
+      "!src/*.{ts,tsx}",
+      "!src/lib/**/*",
+      "!src/**/index.{ts,tsx}"
     ],
     "setupFiles": [
       "react-app-polyfill/jsdom"
