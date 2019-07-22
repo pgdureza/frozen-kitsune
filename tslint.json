@@ -1,0 +1,14 @@
+{
+  "extends": [
+    "tslint:recommended",
+    "tslint-react",
+    "tslint-config-prettier",
+    "tslint-immutable",
+    "tslint-clean-code",
+    "tslint-plugin-prettier"
+  ],
+  "rules": {
+    "no-unused-variable": true,
+    "object-literal-sort-keys": false
+  }
+}
