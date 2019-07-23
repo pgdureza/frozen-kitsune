@@ -31,7 +31,7 @@ const typeDefs = gql`
   }
 `
 
-const VISITOR_PER_PAGE = 12
+const VISITOR_PER_PAGE = 8
 
 const filterByDate = (visitors, date, endDate) => {
   if (date && endDate) {
