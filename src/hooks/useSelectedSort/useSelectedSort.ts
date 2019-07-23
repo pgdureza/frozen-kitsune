@@ -3,5 +3,5 @@ import hooks from '..'
 
 export const useSelectedSort = () => {
   const { location } = hooks.useReactRouter()
-  return queryString.parse(location.search).sort || 'date'
+  return (queryString.parse(location.search).sort || 'date') as string
 }

@@ -3,5 +3,5 @@ import hooks from '..'
 
 export const useSelectedFilter = () => {
   const { location } = hooks.useReactRouter()
-  return queryString.parse(location.search).filter || 'Today'
+  return (queryString.parse(location.search).filter || 'Today') as string
 }

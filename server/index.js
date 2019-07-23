@@ -17,8 +17,16 @@ const typeDefs = gql`
     sort: [String]
   }
 
+  type VisitorList {
+    data: [Visitor]
+    next: String
+    previous: String
+    total: Int
+    count: Int
+  }
+
   type Query {
-    visitors(date: String, endDate: String, order: String, sort: String, page: Int): [Visitor]
+    visitors(date: String, endDate: String, order: String, sort: String, page: Int): VisitorList
     root: Root
   }
 `
@@ -54,7 +62,17 @@ const resolvers = {
         results = sortObjectsArray(results, sort, order)
       }
       const lastDisplayed = page * VISITOR_PER_PAGE
-      return results.slice(lastDisplayed - VISITOR_PER_PAGE, lastDisplayed)
+      const total = results.length
+      results = results.slice(lastDisplayed - VISITOR_PER_PAGE, lastDisplayed)
+      const previousPage = page - 1
+      const nextPage = page + 1
+      return {
+        data: results,
+        previous: page === 1 ? undefined : previousPage,
+        next: page * VISITOR_PER_PAGE < total ? nextPage : undefined,
+        total,
+        count: previousPage * VISITOR_PER_PAGE + results.length,
+      }
     },
   },
 }

@@ -14,6 +14,7 @@
     "@types/react-router-dom": "^4.3.4",
     "@typescript-eslint/eslint-plugin": "1.6.0",
     "@typescript-eslint/parser": "1.6.0",
+    "apollo-boost": "^0.4.3",
     "babel-eslint": "10.0.1",
     "babel-jest": "^24.8.0",
     "babel-loader": "8.0.5",
@@ -22,6 +23,7 @@
     "camelcase": "^5.2.0",
     "case-sensitive-paths-webpack-plugin": "2.2.0",
     "css-loader": "2.1.1",
+    "date-fns": "^1.30.1",
     "dotenv": "6.2.0",
     "dotenv-expand": "4.2.0",
     "eslint": "^5.16.0",
@@ -34,6 +36,7 @@
     "eslint-plugin-react-hooks": "^1.5.0",
     "file-loader": "3.0.1",
     "fs-extra": "7.0.1",
+    "graphql": "^14.4.2",
     "html-webpack-plugin": "4.0.0-beta.5",
     "identity-obj-proxy": "3.0.0",
     "is-wsl": "^1.1.0",
@@ -51,6 +54,7 @@
     "postcss-safe-parser": "4.0.1",
     "query-string": "^6.8.1",
     "react": "^16.8.6",
+    "react-apollo": "^2.5.8",
     "react-app-polyfill": "^1.0.1",
     "react-dev-utils": "^9.0.1",
     "react-dom": "^16.8.6",
@@ -94,6 +98,7 @@
     ]
   },
   "devDependencies": {
+    "@types/date-fns": "^2.6.0",
     "@types/enzyme": "^3.10.3",
     "@types/material-ui": "^0.21.6",
     "@types/query-string": "^6.3.0",
@@ -113,7 +118,7 @@
     "collectCoverageFrom": [
       "src/**/*.{ts,tsx}",
       "!src/*.{ts,tsx}",
-      "!src/lib/**/*",
+      "!src/api/queries.ts",
       "!src/**/index.{ts,tsx}"
     ],
     "setupFiles": [
