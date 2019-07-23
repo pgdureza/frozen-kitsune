@@ -74,7 +74,8 @@
     "build": "node scripts/build.js",
     "test:unit": "jest --watchAll",
     "test:unit:coverage": "jest --coverage",
-    "test:integration": "node scripts/test.js"
+    "test:integration": "node scripts/test.js",
+    "server": "node server/index.js"
   },
   "eslintConfig": {
     "extends": "react-app"
