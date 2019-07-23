@@ -1,21 +1,8 @@
 import { gql } from 'apollo-boost'
 
-interface IGetVisitorsProps {
-  date?: string
-  endDate?: string
-  page?: number
-  sort?: string
-  order?: string
-}
-
-export const getVisitors = ({ sort, date, endDate, page, order }: IGetVisitorsProps) => gql`
-  {
-    visitors(date: "${date}"
-      ${endDate ? `,endDate: "${endDate}"` : ''} 
-      ${page ? `,page: ${page}` : ''} 
-      ${sort ? `,sort: "${sort}"` : ''} 
-      ${order ? `,order: "${order}"` : ''} )
-    {  
+export const GET_VISITORS = gql`
+  query Visitors($date: String, $endDate: String, $page: Int, $sort: String, $order: String) {
+    visitors(date: $date, endDate: $endDate, page: $page, sort: $sort, order: $order) {
       next
       previous
       total

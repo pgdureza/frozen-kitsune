@@ -66,12 +66,13 @@ const resolvers = {
       results = results.slice(lastDisplayed - VISITOR_PER_PAGE, lastDisplayed)
       const previousPage = page - 1
       const nextPage = page + 1
+      const count = previousPage * VISITOR_PER_PAGE + results.length
       return {
         data: results,
         previous: page === 1 ? undefined : previousPage,
         next: page * VISITOR_PER_PAGE < total ? nextPage : undefined,
         total,
-        count: previousPage * VISITOR_PER_PAGE + results.length,
+        count: count > total ? total : count,
       }
     },
   },

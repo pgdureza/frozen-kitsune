@@ -39,6 +39,9 @@ const useStyles = makeStyles((theme: Theme) =>
     companyName: {
       padding: '0.5rem 1rem',
     },
+    logo: {
+      width: 180,
+    },
     link: {
       textDecoration: 'none',
     },
@@ -85,6 +88,9 @@ export const LayoutSidebarContent: React.FC = () => {
   const rootValues = useRootContext()
   return (
     <React.Fragment>
+      <Link to="/">
+        <img src="img/logo.png" className={classes.logo} alt="logo" />
+      </Link>
       <Typography variant="h6" noWrap={true} className={classes.companyName}>
         Frozen Kitsune
       </Typography>

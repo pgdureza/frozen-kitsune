@@ -14,7 +14,7 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import { format, startOfMonth, subDays, subWeeks } from 'date-fns'
 import { Query } from 'react-apollo'
 import { IVisitor } from '../'
-import { getVisitors } from '../../../api/queries'
+import { GET_VISITORS } from '../../../api/queries'
 import usePagination from '../../../hooks/usePagination'
 import useSelectedFilter from '../../../hooks/useSelectedFilter'
 import useSelectedSort from '../../../hooks/useSelectedSort'
@@ -70,7 +70,7 @@ export const VisitorList = () => {
     <Container maxWidth="lg" className={classes.root}>
       <Sort />
       <Paper className={classes.paper}>
-        <Query query={getVisitors({ page, sort, order, ...dates })}>
+        <Query query={GET_VISITORS} variables={{ page, sort, order, ...dates }}>
           {({ loading, data }: any) => {
             if (loading || !(data && data.visitors && data.visitors.data)) {
               return null
@@ -92,14 +92,15 @@ export const VisitorList = () => {
                       <TableCell className={classes.tableHeader1}>IP Address</TableCell>
                     </TableRow>
                   </TableHead>
-                  {data.visitors.data.map((visitor: IVisitor, index: number) => (
-                    <TableRow key={`${index}-${data.ip_address}`}>
-                      <TableCell>{format(visitor.date, 'YYYY MMM DD')}</TableCell>
-                      <TableCell>{visitor.device}</TableCell>
-                      <TableCell>{visitor.ip_address}</TableCell>
-                    </TableRow>
-                  ))}
-                  <TableBody />
+                  <TableBody>
+                    {data.visitors.data.map((visitor: IVisitor, index: number) => (
+                      <TableRow key={`${index}-${data.ip_address}`}>
+                        <TableCell>{format(visitor.date, 'YYYY MMM DD')}</TableCell>
+                        <TableCell>{visitor.device}</TableCell>
+                        <TableCell>{visitor.ip_address}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
                 </Table>
                 <Pagination
                   next={data.visitors.next}
