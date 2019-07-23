@@ -21,7 +21,7 @@ describe('Visitor List component', () => {
     )
     const wrapper = shallow(<VisitorList />)
     expect(wrapper.find(Query).prop('query')).toEqual(
-      getVisitors({ page: 2, date: format(new Date(), 'YYYY-MM-DD'), sort: 'date', order: 'asc' }),
+      getVisitors({ page: 2, date: format(new Date(), 'YYYY-MM-DD'), sort: 'date', order: 'desc' }),
     )
   })
 

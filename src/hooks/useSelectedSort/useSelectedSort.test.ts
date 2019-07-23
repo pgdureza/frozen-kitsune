@@ -15,7 +15,7 @@ describe('useSelectedSort', () => {
           } as any),
       )
       const [selectedSort, sortOrder] = useSelectedSort()
-      expect(sortOrder).toBe('asc')
+      expect(sortOrder).toBe('desc')
       expect(selectedSort).toBe('date')
     })
     it('sets value based on search params', () => {

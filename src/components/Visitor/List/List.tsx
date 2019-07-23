@@ -19,17 +19,24 @@ import usePagination from '../../../hooks/usePagination'
 import useSelectedFilter from '../../../hooks/useSelectedFilter'
 import useSelectedSort from '../../../hooks/useSelectedSort'
 import Pagination from '../../Pagination'
+import Sort from '../../Sort'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
+      marginTop: theme.spacing(2),
+    },
+    paper: {
       width: '100%',
-      marginTop: theme.spacing(6),
+      marginTop: theme.spacing(2),
       overflowX: 'auto',
       minHeight: '80vh',
     },
-    tableHeader: {
-      width: '33%',
+    tableHeader1: {
+      width: '20%',
+    },
+    tableHeader2: {
+      width: '40%',
     },
   }),
 )
@@ -60,8 +67,9 @@ export const VisitorList = () => {
   const dates = getDates(filter)
 
   return (
-    <Container maxWidth="lg">
-      <Paper className={classes.root}>
+    <Container maxWidth="lg" className={classes.root}>
+      <Sort />
+      <Paper className={classes.paper}>
         <Query query={getVisitors({ page, sort, order, ...dates })}>
           {({ loading, data }: any) => {
             if (loading || !(data && data.visitors && data.visitors.data)) {
@@ -79,9 +87,9 @@ export const VisitorList = () => {
                 <Table>
                   <TableHead>
                     <TableRow>
-                      <TableCell className={classes.tableHeader}>Date</TableCell>
-                      <TableCell className={classes.tableHeader}>Device</TableCell>
-                      <TableCell className={classes.tableHeader}>IP Address</TableCell>
+                      <TableCell className={classes.tableHeader1}>Date</TableCell>
+                      <TableCell className={classes.tableHeader2}>Device</TableCell>
+                      <TableCell className={classes.tableHeader1}>IP Address</TableCell>
                     </TableRow>
                   </TableHead>
                   {data.visitors.data.map((visitor: IVisitor, index: number) => (

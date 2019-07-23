@@ -52,11 +52,11 @@ const resolvers = {
   Query: {
     root: () => {
       return {
-        sort: ['date', 'device', 'ip'],
+        sort: ['date', 'device', 'ip_address'],
         filters: ['Today', 'Yesterday', 'Last Week', 'This Month'],
       }
     },
-    visitors: (_, { date, endDate, page = 1, sort, order = 'asc' }) => {
+    visitors: (_, { date, endDate, page = 1, sort, order = 'desc' }) => {
       let results = filterByDate(visitorsDataSource, date, endDate)
       if (sort) {
         results = sortObjectsArray(results, sort, order)
