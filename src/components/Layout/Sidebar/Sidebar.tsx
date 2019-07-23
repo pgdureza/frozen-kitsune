@@ -20,10 +20,10 @@ import {
   ViewWeekRounded,
 } from '@material-ui/icons'
 import CloseRounded from '@material-ui/icons/CloseRounded'
-import queryString from 'query-string'
 import { Link } from 'react-router-dom'
-import useReactRouter from 'use-react-router'
+import useRouter from 'use-react-router'
 import { useRootContext } from '../../../context/Root'
+import useSelectedFilter from '../../../hooks/useSelectedFilter'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -53,9 +53,9 @@ interface ILayoutSidebarContentItemProps {
 }
 
 export const LayoutSidebarContentItem = ({ text }: ILayoutSidebarContentItemProps) => {
-  const { location } = useReactRouter()
+  const { location } = useRouter()
+  const selectedFilter = useSelectedFilter()
   const classes = useStyles()
-  const selectedFilter = queryString.parse(location.search).filter || 'Today'
   const active = selectedFilter === text
   return (
     <Link
@@ -102,9 +102,9 @@ export const LayoutSidebarContent: React.FC = () => {
 }
 
 export const LayoutSidebar: React.FC = () => {
-  const [mobileOpen, setMobileOpen] = React.useState(false)
-
   const classes = useStyles()
+
+  const [mobileOpen, setMobileOpen] = React.useState(false)
 
   const onMobileToggle = () => {
     setMobileOpen(!mobileOpen)

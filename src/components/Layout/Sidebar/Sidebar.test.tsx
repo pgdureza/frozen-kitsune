@@ -1,11 +1,17 @@
 import React from 'react'
 
-import { Drawer, List } from '@material-ui/core'
+import { Drawer, IconButton, List } from '@material-ui/core'
 import { shallow } from 'enzyme'
 import { LayoutSidebar } from '..'
 import { LayoutSidebarContent } from './Sidebar'
 
+afterEach(jest.clearAllMocks)
+
 describe('Sidebar component', () => {
+  const setMobileOpen = jest.fn()
+  jest
+    .spyOn(React, 'useState')
+    .mockImplementation(((initial: boolean) => [initial, setMobileOpen]) as any)
   const wrapper = shallow(<LayoutSidebar />)
 
   describe('in desktop', () => {
@@ -20,6 +26,13 @@ describe('Sidebar component', () => {
       const temporaryDrawer = wrapper.find(Drawer).find({ variant: 'temporary' })
       expect(temporaryDrawer.length).toBe(1)
       expect(temporaryDrawer.find(LayoutSidebarContent).length).toBe(1)
+    })
+    describe('when clicking on IconButton', () => {
+      it('toggles open/close state of drawer ', () => {
+        expect(setMobileOpen).not.toHaveBeenCalled()
+        wrapper.find(IconButton).simulate('click')
+        expect(setMobileOpen).toHaveBeenCalledWith(true)
+      })
     })
   })
 })

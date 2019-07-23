@@ -38,7 +38,7 @@ export const VisitorList = () => {
   const classes = useStyles()
 
   return (
-    <Container maxWidth="md">
+    <Container maxWidth="lg">
       <Paper className={classes.root}>
         <Table>
           <TableHead>
