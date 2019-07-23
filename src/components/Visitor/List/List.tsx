@@ -54,16 +54,15 @@ export const getDates = (filter: string) => {
 
 export const VisitorList = () => {
   const classes = useStyles()
-
   const page = usePagination()
-  const sort = useSelectedSort()
+  const [sort, order] = useSelectedSort()
   const filter = useSelectedFilter()
   const dates = getDates(filter)
 
   return (
     <Container maxWidth="lg">
       <Paper className={classes.root}>
-        <Query query={getVisitors({ page, sort, ...dates })}>
+        <Query query={getVisitors({ page, sort, order, ...dates })}>
           {({ loading, data }: any) => {
             if (loading || !(data && data.visitors && data.visitors.data)) {
               return null

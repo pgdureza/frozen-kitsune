@@ -5,7 +5,7 @@ interface IGetVisitorsProps {
   endDate?: string
   page?: number
   sort?: string
-  order?: 'asc' | 'desc'
+  order?: string
 }
 
 export const getVisitors = ({ sort, date, endDate, page, order }: IGetVisitorsProps) => gql`

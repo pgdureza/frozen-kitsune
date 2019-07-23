@@ -14,20 +14,22 @@ describe('useSelectedSort', () => {
             },
           } as any),
       )
-      const selectedFilter = useSelectedSort()
-      expect(selectedFilter).toBe('date')
+      const [selectedSort, sortOrder] = useSelectedSort()
+      expect(sortOrder).toBe('asc')
+      expect(selectedSort).toBe('date')
     })
     it('sets value based on search params', () => {
       jest.spyOn(hooks, 'useReactRouter').mockImplementation(
         () =>
           ({
             location: {
-              search: '?sort=Yesterday',
+              search: '?sort=device',
             },
           } as any),
       )
-      const selectedFilter = useSelectedSort()
-      expect(selectedFilter).toBe('Yesterday')
+      const [selectedSort, sortOrder] = useSelectedSort()
+      expect(sortOrder).toBe('desc')
+      expect(selectedSort).toBe('device')
     })
   })
 })
