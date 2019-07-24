@@ -41,22 +41,18 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 )
 
-const formatDate = (date: Date) => {
-  return format(date, 'YYYY-MM-DD')
-}
-
 export const getDates = (filter: string) => {
   const today = new Date()
   if (filter === 'Yesterday') {
-    return { date: formatDate(subDays(today, 1)), endDate: formatDate(today) }
+    return { date: subDays(today, 1).toISOString(), endDate: today.toISOString() }
   }
   if (filter === 'Last Week') {
-    return { date: formatDate(subWeeks(today, 1)), endDate: formatDate(today) }
+    return { date: subWeeks(today, 1).toISOString(), endDate: today.toISOString() }
   }
   if (filter === 'This Month') {
-    return { date: formatDate(startOfMonth(today)), endDate: formatDate(today) }
+    return { date: startOfMonth(today).toISOString(), endDate: today.toISOString() }
   }
-  return { date: formatDate(today) }
+  return { date: today.toISOString() }
 }
 
 export const VisitorList = () => {
@@ -95,9 +91,13 @@ export const VisitorList = () => {
                   <TableBody>
                     {data.visitors.data.map((visitor: IVisitor, index: number) => (
                       <TableRow key={`${index}-${data.ip_address}`}>
-                        <TableCell>{format(visitor.date, 'YYYY MMM DD')}</TableCell>
-                        <TableCell>{visitor.device}</TableCell>
-                        <TableCell>{visitor.ip_address}</TableCell>
+                        <TableCell data-cy-element="visitor-date">
+                          {format(visitor.date, 'YYYY MMM DD')}
+                        </TableCell>
+                        <TableCell data-cy-element="visitor-device">{visitor.device}</TableCell>
+                        <TableCell data-cy-element="visitor-ip-address">
+                          {visitor.ip_address}
+                        </TableCell>
                       </TableRow>
                     ))}
                   </TableBody>

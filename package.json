@@ -79,7 +79,8 @@
     "build": "node scripts/build.js",
     "test:unit": "jest --watchAll",
     "test:unit:coverage": "jest --coverage",
-    "test:integration": "node scripts/test.js",
+    "test:integration": "cypress run",
+    "test:integration:open": "cypress open",
     "server": "node server/index.js"
   },
   "eslintConfig": {
@@ -102,6 +103,7 @@
     "@types/enzyme": "^3.10.3",
     "@types/material-ui": "^0.21.6",
     "@types/query-string": "^6.3.0",
+    "cypress": "^3.4.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "prettier": "^1.18.2",

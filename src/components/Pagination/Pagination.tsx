@@ -42,6 +42,7 @@ export const Pagination = ({ count, total, next, previous }: IPaginationProps) =
         Showing {count} out of {total}
       </Typography>
       <Link
+        data-cy-element="pagination-previous"
         onClick={!previous ? preventClick : undefined}
         to={{
           pathname: location.pathname,
@@ -56,6 +57,7 @@ export const Pagination = ({ count, total, next, previous }: IPaginationProps) =
         </IconButton>
       </Link>
       <Link
+        data-cy-element="pagination-next"
         onClick={!next ? preventClick : undefined}
         to={{
           pathname: location.pathname,

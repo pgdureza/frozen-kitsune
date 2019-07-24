@@ -22,12 +22,10 @@ describe('Visitor List component', () => {
         } as any),
     )
     const wrapper = shallow(<VisitorList />)
-    expect(wrapper.find(Query).prop('variables')).toEqual({
-      page: 2,
-      date: format(new Date(), 'YYYY-MM-DD'),
-      sort: 'date',
-      order: 'desc',
-    })
+    const variables = wrapper.find(Query).prop('variables')
+    expect(variables.page).toEqual(2)
+    expect(variables.sort).toEqual('date')
+    expect(variables.order).toEqual('desc')
   })
 
   it('queries using default values when location.search is not provided', () => {
@@ -44,11 +42,9 @@ describe('Visitor List component', () => {
         } as any),
     )
     const wrapper = shallow(<VisitorList />)
-    expect(wrapper.find(Query).prop('variables')).toEqual({
-      page: 4,
-      date: format(new Date(), 'YYYY-MM-DD'),
-      sort: 'date',
-      order: 'desc',
-    })
+    const variables = wrapper.find(Query).prop('variables')
+    expect(variables.page).toEqual(4)
+    expect(variables.sort).toEqual('date')
+    expect(variables.order).toEqual('desc')
   })
 })

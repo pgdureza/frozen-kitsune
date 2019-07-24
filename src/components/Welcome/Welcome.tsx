@@ -34,6 +34,11 @@ export const Welcome = () => {
         When on the visitor listing page, you will find the sort and order above the table of
         visitors. The header and footer of the table will have a pagination section.
       </Typography>
+      <br />
+      <Typography variant="body1">
+        NOTE: The time filter applied is all in ISO so mock results might not match your locale
+        timzone.
+      </Typography>
     </Container>
   )
 }

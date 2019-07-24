@@ -2,6 +2,7 @@ const { ApolloServer, gql } = require('apollo-server')
 
 const sortObjectsArray = require('sort-objects-array')
 const visitorsDataSource = require('./mocks/visitors.json')
+const { isSameDay } = require('date-fns')
 
 // Type definitions define the "shape" of your data and specify
 // which ways the data can be fetched from the GraphQL server.
@@ -43,7 +44,11 @@ const filterByDate = (visitors, date, endDate) => {
     })
   }
   if (date) {
-    return visitors.filter(visitor => visitor.date.indexOf(date) >= 0)
+    const queryDate = new Date(date)
+    return visitors.filter(visitor => {
+      const visitorDate = new Date(visitor.date)
+      return isSameDay(queryDate, visitorDate)
+    })
   }
   return visitors
 }

@@ -13,5 +13,9 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const LayoutFooter: React.FC = () => {
   const classes = useStyles()
-  return <div className={classes.root}>Frozen Kitsune © 2019</div>
+  return (
+    <div data-cy-element="footer" className={classes.root}>
+      Frozen Kitsune © 2019
+    </div>
+  )
 }

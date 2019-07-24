@@ -75,21 +75,31 @@ export const Sort = () => {
           inputProps={{
             name: 'sort',
           }}
+          data-cy-element="sort-selection"
         >
           {sortOptions.map(option => (
-            <MenuItem key={`${option}`} value={`${option}`}>
+            <MenuItem
+              key={`${option}`}
+              value={`${option}`}
+              data-cy-element={`sort-selection-${option}`}
+            >
               {option}
             </MenuItem>
           ))}
         </Select>
       </FormControl>
       {selectedOrder === 'desc' ? (
-        <SortRounded onClick={onOrderClick} className={classes.orderIconButton} />
+        <SortRounded
+          onClick={onOrderClick}
+          className={classes.orderIconButton}
+          data-cy-element="sort-order-toggle"
+        />
       ) : (
         <SortRounded
           onClick={onOrderClick}
           className={`${classes.orderIconButton} ${classes.invert}`}
           color="primary"
+          data-cy-element="sort-order-toggle"
         />
       )}
     </div>

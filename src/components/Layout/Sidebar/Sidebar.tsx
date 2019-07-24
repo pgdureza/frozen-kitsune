@@ -59,7 +59,7 @@ export const LayoutSidebarContentItem = ({ text }: ILayoutSidebarContentItemProp
   const classes = useStyles()
   const active = selectedFilter === text
   return (
-    <Link className={classes.link} to={`/visitors/${text}`}>
+    <Link className={classes.link} to={`/visitors/${text}`} data-cy-element={`link-${text}`}>
       <ListItem button={true} className={active ? classes.active : undefined}>
         <ListItemIcon>
           <React.Fragment>
@@ -119,6 +119,7 @@ export const LayoutSidebar: React.FC = () => {
           {mobileOpen ? <CloseRounded /> : <MenuRounded />}
         </IconButton>
         <Drawer
+          data-cy-element="sidebar"
           open={mobileOpen}
           onClose={onMobileToggle}
           anchor="left"
@@ -129,7 +130,13 @@ export const LayoutSidebar: React.FC = () => {
         </Drawer>
       </Hidden>
       <Hidden smDown={true} implementation="css">
-        <Drawer open={true} variant="permanent" className={classes.drawerContainer} anchor="left">
+        <Drawer
+          data-cy-element="sidebar"
+          open={true}
+          variant="permanent"
+          className={classes.drawerContainer}
+          anchor="left"
+        >
           <LayoutSidebarContent />
         </Drawer>
       </Hidden>
