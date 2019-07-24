@@ -9,8 +9,8 @@ describe('useSelectedFilter', () => {
       jest.spyOn(hooks, 'useReactRouter').mockImplementationOnce(
         () =>
           ({
-            location: {
-              search: '',
+            match: {
+              params: { datefilter: '' },
             },
           } as any),
       )
@@ -21,8 +21,8 @@ describe('useSelectedFilter', () => {
       jest.spyOn(hooks, 'useReactRouter').mockImplementation(
         () =>
           ({
-            location: {
-              search: '?filter=Yesterday',
+            match: {
+              params: { datefilter: 'Yesterday' },
             },
           } as any),
       )

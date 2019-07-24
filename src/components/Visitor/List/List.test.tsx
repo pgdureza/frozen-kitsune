@@ -5,7 +5,6 @@ import { format } from 'date-fns'
 import { shallow } from 'enzyme'
 import { Query } from 'react-apollo'
 import VisitorList from '.'
-import { getVisitors } from '../../../api/queries'
 import hooks from '../../../hooks'
 
 describe('Visitor List component', () => {
@@ -17,12 +16,18 @@ describe('Visitor List component', () => {
             search: '?page=2',
             pathname: '/',
           },
+          match: {
+            params: {},
+          },
         } as any),
     )
     const wrapper = shallow(<VisitorList />)
-    expect(wrapper.find(Query).prop('query')).toEqual(
-      getVisitors({ page: 2, date: format(new Date(), 'YYYY-MM-DD'), sort: 'date', order: 'desc' }),
-    )
+    expect(wrapper.find(Query).prop('variables')).toEqual({
+      page: 2,
+      date: format(new Date(), 'YYYY-MM-DD'),
+      sort: 'date',
+      order: 'desc',
+    })
   })
 
   it('queries using default values when location.search is not provided', () => {
@@ -33,16 +38,17 @@ describe('Visitor List component', () => {
             search: '?page=4&sort=date&order=desc',
             pathname: '/',
           },
+          match: {
+            params: {},
+          },
         } as any),
     )
     const wrapper = shallow(<VisitorList />)
-    expect(wrapper.find(Query).prop('query')).toEqual(
-      getVisitors({
-        page: 4,
-        date: format(new Date(), 'YYYY-MM-DD'),
-        sort: 'date',
-        order: 'desc',
-      }),
-    )
+    expect(wrapper.find(Query).prop('variables')).toEqual({
+      page: 4,
+      date: format(new Date(), 'YYYY-MM-DD'),
+      sort: 'date',
+      order: 'desc',
+    })
   })
 })

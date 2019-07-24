@@ -21,7 +21,6 @@ import {
 } from '@material-ui/icons'
 import CloseRounded from '@material-ui/icons/CloseRounded'
 import { Link } from 'react-router-dom'
-import useRouter from 'use-react-router'
 import { useRootContext } from '../../../context/Root'
 import useSelectedFilter from '../../../hooks/useSelectedFilter'
 
@@ -56,18 +55,11 @@ interface ILayoutSidebarContentItemProps {
 }
 
 export const LayoutSidebarContentItem = ({ text }: ILayoutSidebarContentItemProps) => {
-  const { location } = useRouter()
   const selectedFilter = useSelectedFilter()
   const classes = useStyles()
   const active = selectedFilter === text
   return (
-    <Link
-      className={classes.link}
-      to={{
-        pathname: location.pathname,
-        search: `?filter=${text}`,
-      }}
-    >
+    <Link className={classes.link} to={`/visitors/${text}`}>
       <ListItem button={true} className={active ? classes.active : undefined}>
         <ListItemIcon>
           <React.Fragment>
@@ -89,7 +81,7 @@ export const LayoutSidebarContent: React.FC = () => {
   return (
     <React.Fragment>
       <Link to="/">
-        <img src="img/logo.png" className={classes.logo} alt="logo" />
+        <img src="/img/logo.png" className={classes.logo} alt="logo" />
       </Link>
       <Typography variant="h6" noWrap={true} className={classes.companyName}>
         Frozen Kitsune

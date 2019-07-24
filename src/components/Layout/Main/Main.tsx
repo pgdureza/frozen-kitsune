@@ -2,7 +2,6 @@ import React from 'react'
 
 import { createStyles, makeStyles } from '@material-ui/core'
 import { LayoutFooter, LayoutSidebar } from '..'
-import VisitorList from '../../Visitor/List'
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -18,14 +17,18 @@ const useStyles = makeStyles(() =>
   }),
 )
 
-export const LayoutMain = () => {
+interface ILayoutMainProps {
+  children: React.ReactNode
+}
+
+export const LayoutMain = ({ children }: ILayoutMainProps) => {
   const classes = useStyles()
   return (
     <div className={classes.root}>
       <main className={classes.main}>
         <LayoutSidebar />
         <div className={classes.content}>
-          <VisitorList />
+          {children}
           <LayoutFooter />
         </div>
       </main>

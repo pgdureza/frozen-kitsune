@@ -118,6 +118,7 @@
     "collectCoverageFrom": [
       "src/**/*.{ts,tsx}",
       "!src/*.{ts,tsx}",
+      "!src/pages/*{ts,tsx}",
       "!src/api/queries.ts",
       "!src/**/index.{ts,tsx}"
     ],
